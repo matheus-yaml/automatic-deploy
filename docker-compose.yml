@@ -1,0 +1,43 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    expose:
+      - 3306
+    environment:
+      - MYSQK_USER=mysql
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=agenda
+    volumes: 
+      - ./mysql-data:/var/lib/mysql
+      - ./contatos.sql:/opt/contatos.sql
+
+  agenda:
+    image: jupyter/minimal-notebook
+    container_name: agenda
+    ports:    
+      - 8889:8889
+      - 8888:8888  
+    volumes: 
+      - ./agenda:/home/jovyan
+    user: root
+    command: bash -c 'su jovyan && pip install mysql-connector-python && su root && jupyter-notebook --allow-root'
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - 8080:8080
+    volumes:
+      - ./jenkins-data:/var/jenkins_home
+
+  nodejsserver:
+    image: node
+    container_name: nodejsserver
+    ports:
+      - 3000:3000
+    volumes:
+      - ./nodejsserver:/opt
+    tty: true
+    command: bash -c 'cd /opt && npm i && node app.js'
