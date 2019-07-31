@@ -1,5 +1,16 @@
 version: '3'
 services:
+  gitlab:
+    image: gitlab/gitlab-ce
+    container_name: gitlab
+    ports:
+      - 9090:8080
+    volumes:
+      - ./gitlab/data:/var/opt/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/config:/etc/gitlab
+ 
+
   mysql:
     image: mysql
     container_name: mysql
@@ -13,6 +24,8 @@ services:
       - ./mysql-data:/var/lib/mysql
       - ./contatos.sql:/opt/contatos.sql
 
+
+  
   agenda:
     image: jupyter/minimal-notebook
     container_name: agenda
@@ -24,6 +37,7 @@ services:
     user: root
     command: bash -c 'su jovyan && pip install mysql-connector-python && su root && jupyter-notebook --allow-root'
 
+  
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
@@ -31,6 +45,8 @@ services:
       - 8080:8080
     volumes:
       - ./jenkins-data:/var/jenkins_home
+
+
 
   nodejsserver:
     image: node
