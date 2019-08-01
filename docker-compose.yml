@@ -7,7 +7,7 @@ services:
       - 9090:8080
     volumes:
       - ./gitlab/data:/var/opt/gitlab
-      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/log:/var/log/gitlab
       - ./gitlab/config:/etc/gitlab
  
 
