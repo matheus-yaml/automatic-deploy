@@ -107,6 +107,7 @@ No job nodejsserver:
 No gitlab: configurar webhook no repositório nodejsserver
     http://localhost:9090/root/nodejsserver/-/settings/integrations
         URL: http://jenkins:8080/project/nodejsserver
+        Secret Token: xxx
     
     
 No Jenkins, job nodejsserver: marcar csm do gitlab para deploy automatico
