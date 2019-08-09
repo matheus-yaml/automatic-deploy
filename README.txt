@@ -5,6 +5,10 @@ Criar conta e repositório no gitlab;
     http://localhost:9090/
     http://localhost:9090/projects/new > agenda_mysql
     http://localhost:9090/projects/new > nodejsserver
+    
+    Permitir solicitações para a rede local de ganchos e serviços
+        http://localhost:9090/admin/application_settings/network
+            [x] Allow requests to the local network from hooks and services
 
 Fazer push das aplicações;
     cd ~/automatic-deploy/gitlab/app/agenda_mysql
@@ -95,7 +99,14 @@ Configurar o Jenkins para a segunda aplicação;
                 Integration Token: xwpxSs3JahkYitUZNvRsayA8
             # Test aplication #
 
+No job nodejsserver: 
+    Build Triggers:
+        [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/nodejsserver
+        Advanced > generete secret token
 
 No gitlab: configurar webhook no repositório nodejsserver
-
+    http://localhost:9090/root/nodejsserver/-/settings/integrations
+        URL: http://jenkins:8080/project/nodejsserver
+    
+    
 No Jenkins, job nodejsserver: marcar csm do gitlab para deploy automatico
