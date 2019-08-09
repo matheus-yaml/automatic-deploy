@@ -52,11 +52,17 @@ Configurar plugins no jenkins;
     http://localhost:8080/pluginManager/available
         baixar plugins: publish over ssh; slack notifications e gitlab > restart
 
-Configurar o Jenkins para a primeira aplicação
-
-No Jenkins: criar servidor ssh 
-No Jenkins: criar job agenda
-No job agenda: configurar repositório e Slack notifications
+Configurar o Jenkins para a primeira aplicação;
+    criar ssh server > http://localhost:8080/configure
+        name: agenda
+        hostname: 192.168.77.130
+        username: matheus
+        remote Directory: /home/matheus/automatic-deploy/agenda
+        Passphrase / Password: xxx
+        
+        
+    criar job agenda
+        No job agenda: configurar repositório e Slack notifications
 
 Criar aplicação nodejsserver
 
