@@ -32,7 +32,9 @@ Entrar no container mysql e executar script que restaura o banco de dados adapta
 
 Instalar a aplicação agenda;
     docker-compose up -d agenda
-    
+Pegar token de login:
+    docker logs agenda
+    http://localhost:8888/
 
 Instalar o Jenkins  
 
