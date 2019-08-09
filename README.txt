@@ -109,5 +109,12 @@ No gitlab: configurar webhook no repositório nodejsserver
         URL: http://jenkins:8080/project/nodejsserver
         Secret Token: xxx
     
-    
-No Jenkins, job nodejsserver: marcar csm do gitlab para deploy automatico
+No job agenda: 
+    Build Triggers:
+        [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/agenda
+        Advanced > generete secret token
+
+No gitlab: configurar webhook no repositório agenda
+    http://localhost:9090/root/agenda/-/settings/integrations
+        URL: http://jenkins:8080/project/agenda
+        Secret Token: xxx
