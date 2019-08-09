@@ -17,7 +17,6 @@ services:
     expose:
       - 3306
     environment:
-      - MYSQK_USER=mysql
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=agenda
     volumes: 
