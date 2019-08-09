@@ -30,7 +30,9 @@ Entrar no container mysql e executar script que restaura o banco de dados adapta
     mysql -u root -p < /opt/contatos.sql
     exit
 
-Instalar a aplicação agenda
+Instalar a aplicação agenda;
+    docker-compose up -d agenda
+    
 
 Instalar o Jenkins  
 
