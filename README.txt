@@ -63,6 +63,10 @@ Configurar o Jenkins para a primeira aplicação;
     criar job agenda
         No job agenda: configurar repositório GIT e Slack notifications
             Repository URL: http://gitlab/root/agenda_mysql
+            Build:
+                Name: agenda
+                Source files: **/*
+                Exec command: docker restart agenda
             Post-build actions > slack notifications > advanced
                 Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks
                 Integration Token: xwpxSs3JahkYitUZNvRsayA8
