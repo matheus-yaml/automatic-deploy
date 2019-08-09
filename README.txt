@@ -63,20 +63,35 @@ Configurar o Jenkins para a primeira aplicação;
     criar job agenda
         No job agenda: configurar repositório GIT e Slack notifications
             Repository URL: http://gitlab/root/agenda_mysql
-            Build:
+            Build > Send files or execute commands over SSH:
                 Name: agenda
                 Source files: **/*
                 Exec command: docker restart agenda
             Post-build actions > slack notifications > advanced
-                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks
+                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
                 Integration Token: xwpxSs3JahkYitUZNvRsayA8
             # Test aplication #
 
-Criar aplicação nodejsserver
+Criar aplicação nodejsserver;
+    criar ssh server > http://localhost:8080/configure
+        name: nodejsserver
+        hostname: 192.168.77.130
+        username: matheus
+        remote Directory: /home/matheus/automatic-deploy/nodejsserver
+        Passphrase / Password: xxx
+       
+    criar job nodejsserver;
+        No job nodejsserver: configurar repositório GIT e Slack notifications
+            Repository URL: http://gitlab/root/nodejsserver
+            Build > Send files or execute commands over SSH:
+                Name: nodejsserver
+                Source files: **/*
+                Exec command: docker restart nodejsserver
+            Post-build actions > slack notifications > advanced
+                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
+                Integration Token: xwpxSs3JahkYitUZNvRsayA8
+            # Test aplication #
 
-No Jenkins: criar servidor ssh nodejsserver
-No Jenkins: criar job nodejsserver
-No Jenkins: configurar repositório e Slack notifications 
 
 No gitlab: configurar webhook no repositório nodejsserver
 
