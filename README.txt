@@ -50,7 +50,7 @@ Configurar o Slack para as aplicações;
 
 Configurar plugins no jenkins;
     http://localhost:8080/pluginManager/available
-        baixar plugins: publish over ssh; slack notifications e gitlab
+        baixar plugins: publish over ssh; slack notifications e gitlab > restart
 
 Configurar o Jenkins para a primeira aplicação
 
