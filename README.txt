@@ -36,20 +36,23 @@ Pegar token/password de login:
     docker logs agenda
     http://localhost:8888/
 
-Instalar o Jenkins e copiar token/password
+Instalar o Jenkins e copiar token/password;
     docker-compose up -d jenkins
     docker logs jenkins
 
-Criar configurações iniciais do jenkins
+Criar configurações iniciais do jenkins;
     http://localhost:8080/
         instalar plugins sugeridos
   
-Configurar o Slack para as aplicações
+Configurar o Slack para as aplicações;
     https://automatic-deploy.slack.com
-        adcionar apps > Jenkins CI
+        adcionar apps > Jenkins CI > install > add configuration > get token xwpxSs3JahkYitUZNvRsayA8
+
+Configurar plugins no jenkins;
+    http://localhost:8080/pluginManager/available
+        baixar plugins: publish over ssh; slack notifications e gitlab
 
 Configurar o Jenkins para a primeira aplicação
-No Jenkins: baixar plugins publish over ssh; slack notifications e gitlab
 
 No Jenkins: criar servidor ssh 
 No Jenkins: criar job agenda
