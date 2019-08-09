@@ -30,7 +30,7 @@ Entrar no container mysql e executar script que restaura o banco de dados adapta
     mysql -u root -p < /opt/contatos.sql
     exit
 
-Instalar a aplicação agenda;
+Criar container para aplicação agenda;
     docker-compose up -d agenda
 Pegar token/password de login:
     docker logs agenda
@@ -72,7 +72,10 @@ Configurar o Jenkins para a primeira aplicação;
                 Integration Token: xwpxSs3JahkYitUZNvRsayA8
             # Test aplication #
 
-Criar aplicação nodejsserver;
+Criar container para a aplicação nodejsserver;
+    docker-compose up -d nodejsserver
+
+Configurar o Jenkins para a segunda aplicação;
     criar ssh server > http://localhost:8080/configure
         name: nodejsserver
         hostname: 192.168.77.130
