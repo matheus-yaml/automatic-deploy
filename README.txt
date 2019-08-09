@@ -1,4 +1,4 @@
-Instalar o gitlab;
+Criar container com gitlab;
     docker-compose up -d gitlab
    
 Criar conta e repositório no gitlab; 
@@ -22,7 +22,12 @@ Fazer push das aplicações;
         git push origin master
 
 
-Instalar o bando de dados MySQL 
+Criar container com MySQL; 
+    cd ~/automatic-deploy
+    docker-compose up -d mysql
+    
+Criar
+    
 
 Entrar no container MySQL e executar o script de criação do banco de dados 
 
