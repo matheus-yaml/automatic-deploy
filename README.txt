@@ -1,10 +1,26 @@
-Instalar o gitlab
+Instalar o gitlab;
     docker-compose up -d gitlab
    
-Criar conta e repositório no gitlab; fazer push das aplicações
+Criar conta e repositório no gitlab; 
     http://localhost:9090/
     http://localhost:9090/projects/new > agenda_mysql
     http://localhost:9090/projects/new > nodejsserver
+
+Fazer push das aplicações;
+    cd ~/automatic-deploy/gitlab/app/agenda_mysql
+        git init
+        git remote add origin http://localhost:9090/root/agenda_mysql.git
+        git add *
+        git commit -m 'redondinho'
+        git push origin master
+    
+    cd ~/automatic-deploy/gitlab/app/nodejsserver
+        git init
+        git remote add origin http://localhost:9090/root/nodejsserver.git
+        git add *
+        git commit -m 'redondinho'
+        git push origin master
+
 
 Instalar o bando de dados MySQL 
 
