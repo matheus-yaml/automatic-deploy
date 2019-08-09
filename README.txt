@@ -42,11 +42,11 @@ Instalar o Jenkins e copiar token/password
 
 Criar configurações iniciais do jenkins
     http://localhost:8080/
-    instalar plugins sugeridos
+        instalar plugins sugeridos
   
 Configurar o Slack para as aplicações
-
-
+    https://automatic-deploy.slack.com
+        adcionar apps > Jenkins CI
 
 Configurar o Jenkins para a primeira aplicação
 No Jenkins: baixar plugins publish over ssh; slack notifications e gitlab
