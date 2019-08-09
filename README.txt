@@ -21,15 +21,14 @@ Fazer push das aplicações;
         git commit -m 'redondinho'
         git push origin master
 
-
-Criar container com MySQL; 
+Criar container com mysql; 
     cd ~/automatic-deploy
     docker-compose up -d mysql
     
-Criar
-    
-
-Entrar no container MySQL e executar o script de criação do banco de dados 
+Entrar no container mysql e executar script que restaura o banco de dados adaptando-o para a agenda;
+    docker exec -ti mysql bash
+    mysql -u root -p < /opt/contatos.sql
+    exit
 
 Instalar a aplicação agenda
 
