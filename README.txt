@@ -59,10 +59,14 @@ Configurar o Jenkins para a primeira aplicação;
         username: matheus
         remote Directory: /home/matheus/automatic-deploy/agenda
         Passphrase / Password: xxx
-        
-        
+       
     criar job agenda
-        No job agenda: configurar repositório e Slack notifications
+        No job agenda: configurar repositório GIT e Slack notifications
+            Repository URL: http://gitlab/root/agenda_mysql
+            Post-build actions > slack notifications > advanced
+                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks
+                Integration Token: xwpxSs3JahkYitUZNvRsayA8
+            # Test aplication #
 
 Criar aplicação nodejsserver
 
