@@ -1,6 +1,10 @@
 Instalar o gitlab
-
-Criar repositório no gitlab e fazer push das aplicações
+    docker-compose up -d gitlab
+   
+Criar conta e repositório no gitlab; fazer push das aplicações
+    http://localhost:9090/
+    http://localhost:9090/projects/new > agenda_mysql
+    http://localhost:9090/projects/new > nodejsserver
 
 Instalar o bando de dados MySQL 
 
