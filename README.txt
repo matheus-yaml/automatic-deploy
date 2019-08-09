@@ -32,13 +32,21 @@ Entrar no container mysql e executar script que restaura o banco de dados adapta
 
 Instalar a aplicação agenda;
     docker-compose up -d agenda
-Pegar token de login:
+Pegar token/password de login:
     docker logs agenda
     http://localhost:8888/
 
-Instalar o Jenkins  
+Instalar o Jenkins e copiar token/password
+    docker-compose up -d jenkins
+    docker logs jenkins
 
+Criar configurações iniciais do jenkins
+    http://localhost:8080/
+    instalar plugins sugeridos
+  
 Configurar o Slack para as aplicações
+
+
 
 Configurar o Jenkins para a primeira aplicação
 No Jenkins: baixar plugins publish over ssh; slack notifications e gitlab
