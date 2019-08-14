@@ -50,7 +50,8 @@ Criar configurações iniciais do jenkins;
   
 Configurar o Slack para as aplicações;
     https://automatic-deploy.slack.com
-        adcionar apps > Jenkins CI > install > add configuration > get token xwpxSs3JahkYitUZNvRsayA8
+        invite friends > https://join.slack.com/t/automatic-deploy/shared_invite/enQtNzA5MjE5NTg4MzQyLTc3YzJjNjA4NjVjZDExNjgxYjQ0ZTNkMTU4NmQxNTM5YjQwMTQ0ZjQ3NTcwNjA4ZTY1NWIyMDhiOWNhYTZiYTc
+        adcionar apps > Jenkins CI > install > add configuration > get token 5pVkWPhMfLICMsjm8RM9Oj85
 
 Configurar plugins no jenkins;
     http://localhost:8080/pluginManager/available
