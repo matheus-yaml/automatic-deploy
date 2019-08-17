@@ -7,8 +7,8 @@ Para agilizar... vamos baixar as seguintes images:
     docker pull node
 
 
-INSTALAR DOCKER: curl –fsSL https://get.docker.com | bash 
-INSTALAR DOCKER-COMPOSE: apt-get install docker-compose
+INSTALAR DOCKER: sudo curl –fsSL https://get.docker.com | bash 
+INSTALAR DOCKER-COMPOSE: sudo apt-get install docker-compose
 #######################################################################################################################
 
 Clonar repositório: git clone https://github.com/matheusolivv/automatic-deploy
