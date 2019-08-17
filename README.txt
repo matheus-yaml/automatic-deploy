@@ -3,6 +3,7 @@ Para agilizar... vamos baixar as seguintes images:
     docker pull gitlab/gitlab-ce mysql jupyter/minimal-notebook jenkins/jenkins:lts node
 
 INSTALAR DOCKER: curl –fsSL https://get.docker.com | bash 
+INSTALAR DOCKER-COMPOSE: apt-get install docker-compose
 #######################################################################################################################
 Criar container com gitlab;
     docker-compose up -d gitlab
