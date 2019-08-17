@@ -1,9 +1,9 @@
 #######################################################################################################################
 Para agilizar... vamos baixar as seguintes images:
-    docker pull gitlab/gitlab-ce  
-    docker pull mysql
-    docker pull jupyter/minimal-notebook
-    docker pull jenkins/jenkins:lts
+    docker pull gitlab/gitlab-ce;  
+    docker pull mysql;
+    docker pull jupyter/minimal-notebook;
+    docker pull jenkins/jenkins:lts;
     docker pull node
 
 
