@@ -1,136 +1,136 @@
+1 #######################################################################################################################
+2 Para agilizar... vamos baixar as seguintes images:
+3     docker pull gitlab/gitlab-ce;  
+4    docker pull mysql;
+5    docker pull jupyter/minimal-notebook;
+6    docker pull jenkins/jenkins:lts;
+7    docker pull node
+
+
+10 INSTALAR DOCKER: sudo curl –fsSL https://get.docker.com | bash 
+11 INSTALAR DOCKER-COMPOSE: sudo apt-get install docker-compose
 #######################################################################################################################
-Para agilizar... vamos baixar as seguintes images:
-    docker pull gitlab/gitlab-ce;  
-    docker pull mysql;
-    docker pull jupyter/minimal-notebook;
-    docker pull jenkins/jenkins:lts;
-    docker pull node
 
+14 Clonar repositório: git clone https://github.com/matheusolivv/automatic-deploy
 
-INSTALAR DOCKER: sudo curl –fsSL https://get.docker.com | bash 
-INSTALAR DOCKER-COMPOSE: sudo apt-get install docker-compose
-#######################################################################################################################
-
-Clonar repositório: git clone https://github.com/matheusolivv/automatic-deploy
-
-Criar container com gitlab;
-    docker-compose up -d gitlab
+16 Criar container com gitlab;
+17     docker-compose up -d gitlab
    
-Criar conta e repositório no gitlab; 
-    http://localhost:9090/
-    http://localhost:9090/projects/new > agenda_mysql
-    http://localhost:9090/projects/new > nodejsserver
+19 Criar conta e repositório no gitlab; 
+20     http://localhost:9090/
+21     http://localhost:9090/projects/new > agenda_mysql
+22     http://localhost:9090/projects/new > nodejsserver
     
-    Permitir solicitações para a rede local de ganchos e serviços
-        http://localhost:9090/admin/application_settings/network
-            [x] Allow requests to the local network from hooks and services
+24     Permitir solicitações para a rede local de ganchos e serviços
+25         http://localhost:9090/admin/application_settings/network
+26             [x] Allow requests to the local network from hooks and services
 
-Fazer push das aplicações;
-    cd ~/automatic-deploy/gitlab/app/agenda_mysql
-        git init
-        git remote add origin http://localhost:9090/root/agenda_mysql.git
-        git add *
-        git commit -m 'redondinho'
-        git push origin master
+28 Fazer push das aplicações;
+29     cd ~/automatic-deploy/gitlab/app/agenda_mysql
+30         git init
+31         git remote add origin http://localhost:9090/root/agenda_mysql.git
+32         git add *
+33         git commit -m 'redondinho'
+34         git push origin master
     
-    cd ~/automatic-deploy/gitlab/app/nodejsserver
-        git init
-        git remote add origin http://localhost:9090/root/nodejsserver.git
-        git add *
-        git commit -m 'redondinho'
-        git push origin master
+36     cd ~/automatic-deploy/gitlab/app/nodejsserver
+37         git init
+38         git remote add origin http://localhost:9090/root/nodejsserver.git
+39         git add *
+40         git commit -m 'redondinho'
+41         git push origin master
 
-Criar container com mysql; 
-    cd ~/automatic-deploy
-    docker-compose up -d mysql
+43 Criar container com mysql; 
+44     cd ~/automatic-deploy
+45     docker-compose up -d mysql
     
-Entrar no container mysql e executar script que restaura o banco de dados adaptando-o para a agenda;
-    docker exec -ti mysql bash
-    mysql -u root -p < /opt/contatos.sql
-    exit
+47 Entrar no container mysql e executar script que restaura o banco de dados adaptando-o para a agenda;
+48     docker exec -ti mysql bash
+49     mysql -u root -p < /opt/contatos.sql
+50     exit
 
-Criar container para aplicação agenda;
-    docker-compose up -d agenda
-Pegar token/password de login:
-    docker logs agenda
-    http://localhost:8888/
+52 Criar container para aplicação agenda;
+53     docker-compose up -d agenda
+54 Pegar token/password de login:
+55     docker logs agenda
+56     http://localhost:8888/
 
-Instalar o Jenkins e copiar token/password;
-    docker-compose up -d jenkins
-    docker logs jenkins
+58 Instalar o Jenkins e copiar token/password;
+59     docker-compose up -d jenkins
+60     docker logs jenkins
 
-Criar configurações iniciais do jenkins;
-    http://localhost:8080/
-        instalar plugins sugeridos
+62 Criar configurações iniciais do jenkins;
+63     http://localhost:8080/
+64         instalar plugins sugeridos
   
-Configurar o Slack para as aplicações;
-    https://automatic-deploy.slack.com
-        invite friends > https://join.slack.com/t/automatic-deploy/shared_invite/enQtNzA5MjE5NTg4MzQyLTc3YzJjNjA4NjVjZDExNjgxYjQ0ZTNkMTU4NmQxNTM5YjQwMTQ0ZjQ3NTcwNjA4ZTY1NWIyMDhiOWNhYTZiYTc
-        adcionar apps > Jenkins CI > install > add configuration > get token FdN8CFq69ELjyK625Ufbuamv
+66 Configurar o Slack para as aplicações;
+67     https://automatic-deploy.slack.com
+68         invite friends > https://join.slack.com/t/automatic-deploy/shared_invite/enQtNzA5MjE5NTg4MzQyLTc3YzJjNjA4NjVjZDExNjgxYjQ0ZTNkMTU4NmQxNTM5YjQwMTQ0ZjQ3NTcwNjA4ZTY1NWIyMDhiOWNhYTZiYTc
+69         adcionar apps > Jenkins CI > install > add configuration > get token FdN8CFq69ELjyK625Ufbuamv
 
-Configurar plugins no jenkins;
-    http://localhost:8080/pluginManager/available
-        baixar plugins: publish over ssh; slack notifications e gitlab > restart
+71  Configurar plugins no jenkins;
+72      http://localhost:8080/pluginManager/available
+73         baixar plugins: publish over ssh; slack notifications e gitlab > restart
 
-Configurar o Jenkins para a primeira aplicação;
-    criar ssh server > http://localhost:8080/configure
-        name: agenda
-        hostname: 192.168.77.130
-        username: matheus
-        remote Directory: /home/matheus/automatic-deploy/agenda
-        Passphrase / Password: xxx
+75 Configurar o Jenkins para a primeira aplicação;
+76     criar ssh server > http://localhost:8080/configure
+77         name: agenda
+78         hostname: 192.168.77.130
+79         username: matheus
+80         remote Directory: /home/matheus/automatic-deploy/agenda
+81         Passphrase / Password: xxx
        
-    criar job agenda
-        No job agenda: configurar repositório GIT e Slack notifications
-            Repository URL: http://gitlab/root/agenda_mysql
-            Build > Send files or execute commands over SSH:
-                Name: agenda
-                Source files: **/*
-                Exec command: docker restart agenda
-            Post-build actions > slack notifications > advanced
-                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
-                Integration Token: xwpxSs3JahkYitUZNvRsayA8
-            # Test aplication #
+83     criar job agenda
+84         No job agenda: configurar repositório GIT e Slack notifications
+85             Repository URL: http://gitlab/root/agenda_mysql
+86             Build > Send files or execute commands over SSH:
+87                 Name: agenda
+88                 Source files: **/*
+89                 Exec command: docker restart agenda
+90             Post-build actions > slack notifications > advanced
+91                 Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
+92                 Integration Token: xwpxSs3JahkYitUZNvRsayA8
+93             # Test aplication #
 
-Criar container para a aplicação nodejsserver;
-    docker-compose up -d nodejsserver
+95 Criar container para a aplicação nodejsserver;
+96     docker-compose up -d nodejsserver
 
-Configurar o Jenkins para a segunda aplicação;
-    criar ssh server > http://localhost:8080/configure
-        name: nodejsserver
-        hostname: 192.168.77.130
-        username: matheus
-        remote Directory: /home/matheus/automatic-deploy/nodejsserver
-        Passphrase / Password: xxx
+98 Configurar o Jenkins para a segunda aplicação;
+99     criar ssh server > http://localhost:8080/configure
+100         name: nodejsserver
+101         hostname: 192.168.77.130
+102         username: matheus
+103         remote Directory: /home/matheus/automatic-deploy/nodejsserver
+104         Passphrase / Password: xxx
         
-    criar job nodejsserver;
-        No job nodejsserver: configurar repositório GIT e Slack notifications
-            Repository URL: http://gitlab/root/nodejsserver
-            Build > Send files or execute commands over SSH:
-                Name: nodejsserver
-                Source files: **/*
-                Exec command: docker restart nodejsserver
-            Post-build actions > slack notifications > advanced
-                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
-                Integration Token: xwpxSs3JahkYitUZNvRsayA8
-            # Test aplication #
+106     criar job nodejsserver;
+107         No job nodejsserver: configurar repositório GIT e Slack notifications
+108             Repository URL: http://gitlab/root/nodejsserver
+109             Build > Send files or execute commands over SSH:
+110                 Name: nodejsserver
+111                 Source files: **/*
+112                 Exec command: docker restart nodejsserver
+113            Post-build actions > slack notifications > advanced
+114                Slack compatible app URL (necessary): https://automatic-deploy.slack.com/services/hooks/jenkins-ci
+115                Integration Token: xwpxSs3JahkYitUZNvRsayA8
+116             # Test aplication #
 
-No job nodejsserver: 
-    Build Triggers:
-        [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/nodejsserver
-        Advanced > generete secret token
+118 No job nodejsserver: 
+119     Build Triggers:
+120        [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/nodejsserver
+121        Advanced > generete secret token
 
-No gitlab: configurar webhook no repositório nodejsserver
-    http://localhost:9090/root/nodejsserver/-/settings/integrations
-        URL: http://jenkins:8080/project/nodejsserver
-        Secret Token: xxx
+123 No gitlab: configurar webhook no repositório nodejsserver
+124     http://localhost:9090/root/nodejsserver/-/settings/integrations
+125         URL: http://jenkins:8080/project/nodejsserver
+126         Secret Token: xxx
     
-No job agenda: 
-    Build Triggers:
-        [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/agenda
-        Advanced > generete secret token
+128 No job agenda: 
+129     Build Triggers:
+130         [x] Build when a change is pushed to GitLab. GitLab webhook URL: http://localhost:8080/project/agenda
+131         Advanced > generete secret token
 
-No gitlab: configurar webhook no repositório agenda
-    http://localhost:9090/root/agenda/-/settings/integrations
-        URL: http://jenkins:8080/project/agenda
-        Secret Token: xxx
+133 No gitlab: configurar webhook no repositório agenda
+134     http://localhost:9090/root/agenda/-/settings/integrations
+135         URL: http://jenkins:8080/project/agenda
+136        Secret Token: xxx
