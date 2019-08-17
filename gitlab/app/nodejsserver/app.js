@@ -6,5 +6,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(3000, function () {
-  console.log('Examplo de app ouvindo na porta 3000!');
+  console.log('Exemplo de app ouvindo na porta 3000!');
 });
