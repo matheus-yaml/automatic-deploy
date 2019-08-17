@@ -5,6 +5,9 @@ Para agilizar... vamos baixar as seguintes images:
 INSTALAR DOCKER: curl –fsSL https://get.docker.com | bash 
 INSTALAR DOCKER-COMPOSE: apt-get install docker-compose
 #######################################################################################################################
+
+Clonar repositório: git clone https://github.com/matheusolivv/automatic-deploy
+
 Criar container com gitlab;
     docker-compose up -d gitlab
    
