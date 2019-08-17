@@ -97,7 +97,7 @@ Configurar o Jenkins para a segunda aplicação;
         username: matheus
         remote Directory: /home/matheus/automatic-deploy/nodejsserver
         Passphrase / Password: xxx
-       
+        
     criar job nodejsserver;
         No job nodejsserver: configurar repositório GIT e Slack notifications
             Repository URL: http://gitlab/root/nodejsserver
